@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <h1 style="color: cyan">hello, {{get_name}}</h1>
+
+    <!--<h1 style="color: cyan">hello, {{get_name}}</h1><br>-->
 </head>
 <body>
-
+<!--前面加上/使其url，login_action成为一级路径，后面加上/，post请求时需要-->
+    <form action="/index/" method="post">{% csrf_token %}
+        <p>
+            Username:
+            <input type="text" name="username" />
+        </p>
+        <p>
+            Password:
+            <input type="password" name="password" />
+        </p>
+        <input type="submit" value="Login" />
+        <p style="color: red">{{error}}</p><br>
+    </form>
 </body>
 </html>
