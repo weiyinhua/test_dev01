@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib import auth
 
 # Create your views here.
 def say_hello(request):
@@ -27,8 +28,16 @@ def index(request):
     else:
         input_username = request.POST.get("username", "")
         input_password = request.POST.get("password", "")
+        if input_username == "" or input_password == "":
+            return render(request, "index.html", {"error": "用户名或密码不能为空"})
+        user = auth.authenticate(username=input_username, password=input_password)
+        print (user)
+        if user == None:
+            return render(request, "index.html", {"error": "用户名或密码错误"})
+
+        """
         if input_username != "tom" or input_password != "123":
             # return HttpResponse("Error entering username or password")
             return render(request, "index.html", {"error": "Error entering username or password"})
-
+        """
         return HttpResponse("ok")
