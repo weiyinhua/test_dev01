@@ -21,5 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('hello/', say_hello),
     path('hello/', views.say_hello),
+    path('', views.index),
     path('index/', views.index),
+    path('accounts/login/', views.index),#未登录时跳转
+    path('project/', views.project),
+    path('logout/', views.logout),
 ]
