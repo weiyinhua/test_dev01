@@ -49,6 +49,7 @@ def index(request):
 def project(request):
     return render(request, "project.html")
 
+@login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect("/index/")
